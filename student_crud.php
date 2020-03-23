@@ -82,9 +82,12 @@ function delete_student($studentid){
 function update_student($no, $studentid, $name, $password)
 {
   global $conn;
-  $stmt = $conn->prepare("UPDATE student SET studentid = ?, name = ?, password = ? WHERE no = ?");
-  $stmt->bind_param("sssi", $studentid, $name, $password, $no);
-  $stmt->execute();
+  $sql = "UPDATE student SET studentid = '".$studentid."', name = '".$name."'";
+  if($password != ''){
+    $sql .= ", password = '".$password."'";
+  }
+  $sql .= " WHERE no = '".$no."'";
+  $result = $conn->query($sql);
 }
 
 
