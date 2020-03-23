@@ -25,6 +25,8 @@ switch($request_method){
       $no = $data['no'];
       update_student($no, $studentid, $name, $password);
     }
+
+    get_students($studentid);
     break;
   case 'DELETE':
     $studentid = $_GET['studentid'];
@@ -75,6 +77,14 @@ function delete_student($studentid){
   global $conn;
   $sql = "DELETE FROM student WHERE studentid = '" . $studentid . "'";
   $result = $conn->query($sql);
+}
+
+function update_student($no, $studentid, $name, $password)
+{
+  global $conn;
+  $stmt = $conn->prepare("UPDATE student SET studentid = ?, name = ?, password = ? WHERE no = ?");
+  $stmt->bind_param("sssi", $studentid, $name, $password, $no);
+  $stmt->execute();
 }
 
 
