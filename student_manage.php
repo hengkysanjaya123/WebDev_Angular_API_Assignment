@@ -61,7 +61,7 @@ app.controller('studentCtrl', function($scope, $http) {
 			.then(function (response) {
                     console.log("data added successfully");
                     alert("data added successfully");
-                    // $scope.message = "data added successfully";
+                    $window.location.href = "../student_list_separate.php";
 				})
 			.catch(function (err) { 
 					console.log("error while requesting to insert data to server" + err)
