@@ -7,6 +7,7 @@ include "include/conn_db.php";
 $request_method=$_SERVER["REQUEST_METHOD"];
 
 
+// checking the request method -> GET, POST, PUT, DELETE
 switch($request_method){
   case 'GET':
     get_students();
@@ -24,6 +25,7 @@ switch($request_method){
     break;
 }
 
+// function to retrieve students data
 function get_students(){
   global $conn;
   $sql = "SELECT no, studentid, name FROM student";
@@ -42,6 +44,7 @@ function get_students(){
   echo($outp);
 }
 
+// function to insert new student 
 function insert_student($studentid, $name, $password){
   global $conn;
   $stmt = $conn->prepare("INSERT INTO student (studentid,name, password) VALUE (?,?,?)");
