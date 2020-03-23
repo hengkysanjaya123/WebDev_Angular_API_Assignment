@@ -17,22 +17,15 @@ switch($request_method){
     $studentid = $data['studentid'];
     $name = $data['name'];
     $password = $data['password'];
-    if (count($data) == 3){
-
-<<<<<<< HEAD
-    // insert ke database
-    insert_student($studentid, $name, $password);
-
     get_students($studentid);
-=======
+
+    if (count($data) == 3){
       insert_student($studentid, $name, $password);
     }
     else if(count($data) == 4){
-
       $no = $data['no'];
       update_student($no, $studentid, $name, $password);
     }
->>>>>>> f11982f7d3c4b81f34cf6b5f6a7163ce67a0be36
     break;
   case 'DELETE':
     $studentid = $_GET['studentid'];
