@@ -20,10 +20,14 @@ switch($request_method){
 
     // insert ke database
     insert_student($studentid, $name, $password);
+
+    get_students($studentid);
     break;
   case 'DELETE':
     $studentid = $_GET['studentid'];
     delete_student($studentid);
+
+    echo '{ "Message" : "Data Deleted Successfully" }';
     break;
   default:
     header("HTTP/1.0 405 Method not allowed");
@@ -31,10 +35,14 @@ switch($request_method){
 }
 
 // function to retrieve students data
-function get_students(){
+function get_students($studentid = ''){
   global $conn;
   $sql = "SELECT no, studentid, name FROM student";
-    
+  
+  if($studentid != ''){
+    $sql .= " WHERE studentid = '".$studentid."'";
+  }
+
   $result = $conn->query($sql);
 
   $outp = "";
@@ -44,7 +52,10 @@ function get_students(){
     $outp .= '"Studentid":"'   . $rs["studentid"]        . '",';
     $outp .= '"Name":"'. $rs["name"]     . '"}';
   }
-  $outp ='{"records":['.$outp.']}';
+
+  if($studentid == ''){
+    $outp ='{"records":['.$outp.']}';
+  }
 
   echo($outp);
 }
@@ -61,7 +72,6 @@ function delete_student($studentid){
   global $conn;
   $sql = "DELETE FROM student WHERE studentid = '" . $studentid . "'";
   $result = $conn->query($sql);
-  // echo $sql;
 }
 
 
