@@ -110,6 +110,7 @@
           $http.post("student_crud.php",JSON.stringify(data))
   			.then(function (response) {
                       console.log("data added successfully");
+                      location.href = 'student_manage.php';
                       alert("data added successfully");
                       // $scope.message = "data added successfully";
   				})
