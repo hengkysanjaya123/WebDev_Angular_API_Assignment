@@ -27,6 +27,8 @@ var app = angular.module('myApp', []);
 app.controller('studentCtrl', function($scope, $http) {
    $http.get("student_crud.php")
    .then(function (response) {$scope.names = response.data.records;});
+
+	
 });
 </script>
 

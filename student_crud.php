@@ -52,5 +52,11 @@ function insert_student($studentid, $name, $password){
   $stmt->execute();
 }
 
+function delete($studentid){
+  global $conn;
+  $sql = "DELETE FROM student WHERE studentid = " . $studentid;
+  $result = $conn->query($sql);
+}
+
 
 ?>
