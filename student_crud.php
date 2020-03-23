@@ -18,7 +18,12 @@ switch($request_method){
     $name = $data['name'];
     $password = $data['password'];
 
+    // insert ke database
     insert_student($studentid, $name, $password);
+    break;
+  case 'DELETE':
+    $studentid = $_GET['studentid'];
+    delete_student($studentid);
     break;
   default:
     header("HTTP/1.0 405 Method not allowed");
@@ -52,10 +57,11 @@ function insert_student($studentid, $name, $password){
   $stmt->execute();
 }
 
-function delete($studentid){
+function delete_student($studentid){
   global $conn;
-  $sql = "DELETE FROM student WHERE studentid = " . $studentid;
+  $sql = "DELETE FROM student WHERE studentid = '" . $studentid . "'";
   $result = $conn->query($sql);
+  // echo $sql;
 }
 
 
