@@ -47,7 +47,7 @@
       </div>
       <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
-          <input type="submit" ng-click="submit($event)" value="<?php echo isset($_GET['no']) ? 'Update' : 'Submit' ?>" class="btn btn-primary btn-lg"/>
+          <input type="submit" ng-click="submit($event)" value="<?php echo isset($_GET['no']) ? 'Update' : 'Submit' ?>" class="btn btn-primary btn-lg" ng-model="submitbtn"/>
         </div>
       </div>
     </form>
@@ -127,6 +127,7 @@
             $http.post("student_crud.php",JSON.stringify(data))
   			.then(function (response) {
                       console.log("data updated successfully");
+                      location.href = 'student_manage.php';
                       alert("data updated successfully");
                       // $scope.message = "data added successfully";
   				})
