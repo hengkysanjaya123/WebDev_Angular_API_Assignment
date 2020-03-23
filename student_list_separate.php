@@ -19,7 +19,7 @@ include "include/header.php";
 			<td>{{ student.Studentid }}</td>
 			<td>{{ student.Name }}</td>
 			<td><input type="button" value="Delete" id={{student.Studentid}} ng-click="delete($event)"></td>
-			<td><input type="button" value="Update" id={{student.StudentId}} ng-click="update()"></td>
+			<td><input type="button" value="Update" id={{student}} ng-click="update($event)"></td>
 		</tr>
 	</table>
 
@@ -31,6 +31,14 @@ app.controller('studentCtrl', function($scope, $http) {
     $scope.refresh = function(){
 		$http.get("student_crud.php")
 			.then(function (response) {$scope.students = response.data.records;});
+   }
+
+   $scope.update = function(event){
+	   var data = event.target.id;
+		var obj = JSON.parse(data);
+    	// console.log(obj);
+	//    console.log(data.Studentid);
+	   location.href = "student_manage.php?studentid=" + obj['Studentid'] + "&name=" + obj['Name'] + + "&no=" + obj['No'];
    }
 
    $scope.delete = function(event){
