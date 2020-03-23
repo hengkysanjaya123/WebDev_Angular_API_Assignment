@@ -41,7 +41,7 @@
       <div class="form-group row">
         <label for="studentpassword" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="studentpassword" name="studentpassword" placeholder="Password" ng-model="studentpassword" >
+          <input type="password" class="form-control" id="studentpassword" name="studentpassword" placeholder="Password" ng-model="studentpassword" value="">
           <input type="hidden" ng-model="no" value="<?php echo $no?>">
         </div>
       </div>
@@ -98,13 +98,12 @@
 
         var btnText = event.target.value;
 
-        
 
         if(btnText == "Submit"){
         var data = {
   			studentid : $scope.studentid,
               name : $scope.studentname,
-              password: $scope.studentpassword
+              password: $scope.studentpassword == undefined ? "" : $scope.studentpassword
   		};
           
           console.log(data);
@@ -122,7 +121,7 @@
             var data = {
                 studentid : $scope.studentid,
                 name : $scope.studentname,
-                password: $scope.studentpassword,
+                password: $scope.studentpassword == undefined ? "" : $scope.studentpassword,
                 no: $scope.no
             };
             $http.post("student_crud.php",JSON.stringify(data))
