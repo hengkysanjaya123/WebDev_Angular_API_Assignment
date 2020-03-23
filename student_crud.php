@@ -19,6 +19,12 @@ switch($request_method){
     $password = $data['password'];
     if (count($data) == 3){
 
+<<<<<<< HEAD
+    // insert ke database
+    insert_student($studentid, $name, $password);
+
+    get_students($studentid);
+=======
       insert_student($studentid, $name, $password);
     }
     else if(count($data) == 4){
@@ -26,10 +32,13 @@ switch($request_method){
       $no = $data['no'];
       update_student($no, $studentid, $name, $password);
     }
+>>>>>>> f11982f7d3c4b81f34cf6b5f6a7163ce67a0be36
     break;
   case 'DELETE':
     $studentid = $_GET['studentid'];
     delete_student($studentid);
+
+    echo '{ "Message" : "Data Deleted Successfully" }';
     break;
   default:
     header("HTTP/1.0 405 Method not allowed");
@@ -37,10 +46,14 @@ switch($request_method){
 }
 
 // function to retrieve students data
-function get_students(){
+function get_students($studentid = ''){
   global $conn;
   $sql = "SELECT no, studentid, name FROM student";
-    
+  
+  if($studentid != ''){
+    $sql .= " WHERE studentid = '".$studentid."'";
+  }
+
   $result = $conn->query($sql);
 
   $outp = "";
@@ -50,7 +63,10 @@ function get_students(){
     $outp .= '"Studentid":"'   . $rs["studentid"]        . '",';
     $outp .= '"Name":"'. $rs["name"]     . '"}';
   }
-  $outp ='{"records":['.$outp.']}';
+
+  if($studentid == ''){
+    $outp ='{"records":['.$outp.']}';
+  }
 
   echo($outp);
 }
@@ -67,7 +83,6 @@ function delete_student($studentid){
   global $conn;
   $sql = "DELETE FROM student WHERE studentid = '" . $studentid . "'";
   $result = $conn->query($sql);
-  // echo $sql;
 }
 
 function update_student($no, $studentid, $name, $password)

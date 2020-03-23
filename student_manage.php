@@ -74,6 +74,6 @@ app.controller('studentCtrl', function($scope, $http) {
 </script>
 
 <?php
-include "include/footer.php";
+// include "include/footer.php";
 ?>
 
