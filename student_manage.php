@@ -18,7 +18,7 @@
   // }
 
   ?>
-
+<div class="container-fluid">
   <h1>Manage Student Data</h1>
   <?php
       // echo $message;
@@ -54,6 +54,7 @@
   </div>
 
 <a class="btn btn-secondary" href="student_list_separate.php" role="button">Return to Homepage</a>
+</div>
 
   <!-- <div ng-app="myApp" ng-controller="studentCtrl">
       <h3 ng-value="message"></h3>

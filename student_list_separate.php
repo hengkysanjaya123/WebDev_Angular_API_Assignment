@@ -10,7 +10,7 @@
 <?php
 include "include/header.php";
 ?>
-<div ng-app="myApp" ng-controller="studentCtrl">
+<div ng-app="myApp" ng-controller="studentCtrl" class="container-fluid">
 
 	<h1>Student List</h1>
 
@@ -18,7 +18,7 @@ include "include/header.php";
 		+ New Student
 	</a> -->
 
-	<table class="table table-striped table-dark">
+	<table class="table table-striped table-light">
 		<tr>
 			<th>Student ID</th>
 			<th>Student Name</th>
@@ -29,7 +29,7 @@ include "include/header.php";
 			<td>{{ student.Name }}</td>
 			<!-- <td><input type="button" value="Delete" id={{student.Studentid}} ng-click="delete($event)"></td>
 			<td><input type="button" value="Update" id={{student}} ng-click="update($event)"></td> -->
-			<td><input type="button" value="Delete" id={{student.Studentid}} class="btn btn-primary btn-lg btn-block"ng-click="delete($event)"></td>
+			<td><input type="button" value="Delete" id={{student.Studentid}} class="btn btn-danger btn-lg btn-block"ng-click="delete($event)"></td>
 			<td><input type="button" value="Update" id={{student}} class="btn btn-info btn-lg btn-block" ng-click="update($event)"></td>
 		</tr>
 	</table>
